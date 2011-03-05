@@ -1,11 +1,15 @@
 # myblog
 
-FIXME: write description
+Blog engine in Clojure.
+
+
 
 ## Usage
 
-FIXME: write
 
+Based on:
+  - clojars-web (https://github.com/ato/clojars-web)
+  - 
 ## License
 
 Copyright (C) 2010 FIXME
