@@ -1,7 +1,8 @@
 (ns myblog.web
   (:require [clojure.contrib.sql :as sql])
   (:use [hiccup.core])
-  (:use [compojure.core]))
+  (:use [compojure.core])
+  (:use [compojure.route :as route]))
 
 (defn not-found-doc []
   (html [:h1 "Page not found"]
@@ -10,7 +11,15 @@
 
 (defn home-page []
   (html [:h1 "My Blog"]
-        [:p "Welcome to My Blog!"]))
+        [:p "Welcome to My Blog! Updated"]))
+
+(defn page-not-found []
+  (html
+   [:head
+    [:title "My Blog"]]
+   [:body 
+    [:h1 "My Blog"]
+    [:p "Page not found"]]))
 
 
 (defmacro with-account [body]
@@ -24,8 +33,7 @@
 
 (defroutes main-routes
   (GET "/" {session :session params :params} (home-page))
-  (ANY "*" {session :session}
-    (html-d)))
+  (route/not-found  (page-not-found)))
 
                                         ;(require 'swank.swank)
                                         ;(swank.swank/start-server "/dev/null" :port 4005)
